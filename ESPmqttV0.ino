@@ -1,12 +1,34 @@
-//Внимание! Билд тестовый блядь, ничё не трогать! Всё на соплях!КОСТЯ НЕ БОМБИ, ЗДЕСЬ ВСЁ ХУЙНЯ И НЕ ОПТИМИЗИРОВАНО, Я ЗНАЮ!
+//Билд тестовый, мозги не ебать ничего не трогат(всё на замёрших соплях, изоленте и жвачке)
 
 #include <ESP8266WiFi.h>
+#include "uMQTTBroker.h"
+#include "confige.h"
 
-char ssid[] = "ssid"
+uMQTTBroker myBroker;
+
+void WifiClient()
+{
+  //Serial.println("Connection as client..");
+  WiFi.begin(ssid, pass);
+  
+  //Serial.println("WiFi connected.");
+  //Serial.println("IP: " + WiFi.localIP().toString());
+}
+
+void WiFiAP()
+{
+  WiFi.softAP(ssid, pass);
+  //Serial.println("AP started");
+  //Serial.println("IP address: " + WiFi.softAPIP().toString());
+}
+
 
 void setup() {
-  // put your setup code here, to run once:
+  if(wifiAP) WiFiAP();
+  else WifiClient();
 
+  //Serial.println("Starting MQTT broker");
+  myBroker.init();
 }
 
 void loop() {
