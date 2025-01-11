@@ -8,18 +8,18 @@ uMQTTBroker myBroker;
 
 void WifiClient()
 {
-  Serial.println("Connection as client..");
+  //Serial.println("Connection as client..");
   WiFi.begin(ssid, pass);
   
-  Serial.println("WiFi connected.");
-  Serial.println("IP: " + WiFi.localIP().toString());
+  //Serial.println("WiFi connected.");
+  //Serial.println("IP: " + WiFi.localIP().toString());
 }
 
 void WiFiAP()
 {
   WiFi.softAP(ssid, pass);
-  Serial.println("AP started");
-  Serial.println("IP address: " + WiFi.softAPIP().toString());
+  //Serial.println("AP started");
+  //Serial.println("IP address: " + WiFi.softAPIP().toString());
 }
 
 
@@ -27,7 +27,7 @@ void setup() {
   if(wifiAP) WiFiAP();
   else WifiClient();
 
-  Serial.println("Starting MQTT broker");
+  //Serial.println("Starting MQTT broker");
   myBroker.init();
 }
 
